@@ -17,6 +17,7 @@ type Logger struct {
 	logFile   *os.File
 	logFileWf *os.File
 	sync.Mutex
+	buf []byte
 }
 
 type UserLogger struct {
@@ -92,6 +93,10 @@ func (this *Logger) write(fp *os.File, logtype string, calldepth int, bufInfo st
 
 }
 
+func (this *Logger) PrintStdout(format string, v ...interface{}) {
+	fmt.Printf(format, v...)
+}
+
 func (this *Logger) SetLogPath(dirpath string, name string) {
 	this.logDir = dirpath
 	err := os.MkdirAll(this.logDir, 0777)
@@ -127,7 +132,7 @@ func (this *UserLogger) AddSingleInfo(s string) {
 
 }
 
-func (this *UserLogger) Debug(format string, v ...interface{}) {
+func (this *Logger) Debug(format string, v ...interface{}) {
 	if this.GetLogLevel() > uint64(DEBUG) {
 		return
 
@@ -136,7 +141,7 @@ func (this *UserLogger) Debug(format string, v ...interface{}) {
 
 }
 
-func (this *UserLogger) Trace(format string, v ...interface{}) {
+func (this *Logger) Trace(format string, v ...interface{}) {
 	if this.GetLogLevel() > uint64(TRACE) {
 		return
 
@@ -145,7 +150,7 @@ func (this *UserLogger) Trace(format string, v ...interface{}) {
 
 }
 
-func (this *UserLogger) Fatal(format string, v ...interface{}) {
+func (this *Logger) Fatal(format string, v ...interface{}) {
 	if this.GetLogLevel() > uint64(FATAL) {
 		return
 
@@ -153,11 +158,10 @@ func (this *UserLogger) Fatal(format string, v ...interface{}) {
 	s := fmt.Sprintf(format, v...)
 	this.write(this.logFile, "FATAL", 2, string(this.buf), s)
 	this.write(this.logFileWf, "FATAL", 2, string(this.buf), s)
-	panic(s)
-
+	//panic(s)
 }
 
-func (this *UserLogger) Info(format string, v ...interface{}) {
+func (this *Logger) Info(format string, v ...interface{}) {
 	if this.GetLogLevel() > uint64(INFO) {
 		return
 
@@ -166,7 +170,7 @@ func (this *UserLogger) Info(format string, v ...interface{}) {
 
 }
 
-func (this *UserLogger) Warn(format string, v ...interface{}) {
+func (this *Logger) Warn(format string, v ...interface{}) {
 	if this.GetLogLevel() > uint64(WARNING) {
 		return
 
@@ -175,7 +179,7 @@ func (this *UserLogger) Warn(format string, v ...interface{}) {
 
 }
 
-func (this *UserLogger) Flush() {
+func (this *Logger) Flush() {
 	this.logFile.Sync()
 	this.logFileWf.Sync()
 

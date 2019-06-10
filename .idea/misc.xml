@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="JavaScriptSettings">
+    <option name="languageLevel" value="ES6" />
+  </component>
+  <component name="NodePackageJsonFileManager">
+    <packageJsonPaths />
+  </component>
+  <component name="SvnBranchConfigurationManager">
+    <option name="myConfigurationMap">
+      <map>
+        <entry key="D:/goWork/src/server">
+          <value>
+            <SvnBranchConfiguration>
+              <option name="trunkUrl" value="svn://192.168.1.185/ljy/server" />
+            </SvnBranchConfiguration>
+          </value>
+        </entry>
+        <entry key="D:/goWork/src/server_old/server">
+          <value>
+            <SvnBranchConfiguration />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

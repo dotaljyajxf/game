@@ -1,0 +1,27 @@
+
+//
+//指定版本 3
+//
+syntax = "proto3";
+//--------------------------------------------------------------------------
+
+
+package pb;
+
+
+message TRequest {
+required string Method = 1;
+required bytes Args = 2;
+optional uint32 CallbackHandler = 3;
+optional string Token = 4;
+}
+
+message TResponse {
+required int32 Err = 1;
+optional string ErrMsg = 2;
+required string Method = 3;
+optional bytes Ret = 4;
+optional uint32 CallbackHandler = 5;
+optional uint32 Time = 6;
+optional string Token = 7;
+}
