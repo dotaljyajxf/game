@@ -1,15 +1,31 @@
 package netserver
 
+import (
+	"pb"
+	"sync"
+)
+
 const MAX_WORKERS = 10
 const MAX_JOB_QUEUES = 5
 
 type callBackFunc func([]string)
-type jobFunc func(string, callBackFunc)
+type jobFunc func(aMethod string, aArgs []byte, resp *pb.TResponse)
 
 type Job struct {
-	DoJob    jobFunc
-	Arg      string
-	callBack callBackFunc
+	DoJob  jobFunc
+	Method string
+	Arg    []byte
+	resp   *pb.TResponse
+}
+
+var jobPool = &sync.Pool{
+	New: func() interface{} {
+		return new(Job)
+	},
+}
+
+func NewJob() *Job {
+	return jobPool.Get().(*Job)
 }
 
 var jobQ chan Job
@@ -36,7 +52,7 @@ func (w Worker) Start() {
 
 			select {
 			case job := <-w.JobQueue:
-				job.DoJob(job.Arg, job.callBack)
+				job.DoJob(job.Method, job.Arg, job.resp)
 			case <-w.Quit:
 				return
 			}

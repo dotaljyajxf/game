@@ -42,6 +42,7 @@ func (this *Server) Start() {
 		}
 
 		this.logger.Info("client:%s connected", conn.RemoteAddr().String())
-
+		userConn := NewUserConn(conn)
+		userConn.Start()
 	}
 }

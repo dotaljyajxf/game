@@ -11,6 +11,7 @@ type Config struct {
 	ConfigFile     string
 
 	OnlineMaxNum int
+	ArrMessCode  [][]byte
 
 	MaxPackageLen    int
 	CommonPackageLen int

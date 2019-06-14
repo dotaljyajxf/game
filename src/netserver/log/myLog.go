@@ -188,5 +188,4 @@ func (this *Logger) Flush() {
 func (this *UserLogger) Put() {
 	this.buf = this.buf[:0]
 	g_bufPool.Put(this.buf)
-
 }
