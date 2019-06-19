@@ -1,0 +1,12 @@
+{
+    "files.autoSave":"onFocusChange",
+    "go.buildFlags": [],
+    "go.lintFlags": ["--disabled=varcheck"],
+    "go.vetFlags": [],
+    //"go.inferGopath":true,
+    "go.useCodeSnippetsOnFunctionSuggest": false,
+    "go.formatTool": "goreturns",
+    "go.goroot": "C:\\Go",
+    "go.toolsGopath": "D:\\goWork",
+    "go.gopath": "E:\\game",
+}

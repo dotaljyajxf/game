@@ -49,7 +49,7 @@ type TNetCodec struct {
 
 func NewNetCodec(aRwc io.ReadWriteCloser) *TNetCodec {
 
-	limitedReader := &io.LimitedReader{aRwc, 0}
+	limitedReader := &io.LimitedReader{R: aRwc, N: 0}
 
 	writeBuf := bufio.NewWriter(aRwc)
 
@@ -80,7 +80,7 @@ func (this *TNetCodec) ReadRequest(aReq interface{}, isCheckSum bool) (uint32, e
 		return 0, err
 	}
 	if n != this.headSize {
-		return 0, fmt.Errorf("headSize unMatch %s", n)
+		return 0, fmt.Errorf("headSize unMatch %d", n)
 	}
 
 	flag := this.readHeaderBuf[NET_HEAD_FLAG_BYTE]

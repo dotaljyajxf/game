@@ -7,6 +7,7 @@ import (
 	"runtime/debug"
 	"sync"
 	"time"
+	"module"
 )
 
 type INetCodec interface {
@@ -129,6 +130,7 @@ func (this *UserConn) HandleRequest() {
 			this.respChan <- resp
 
 			FreeRequest(req)
+			FreeResponse(resp)
 		}
 	}
 
@@ -137,6 +139,18 @@ func (this *UserConn) HandleRequest() {
 
 func (this *UserConn) doRequest(aMethod string, aArgs []byte, resp *pb.TResponse) error {
 
+	job := NewJob()
+	job.Method = aMethod
+	job.Arg = this.codec.
+	job.DoJob = module.handleRequest
+	job.resp = make(chan interface{})
+
+	jobDispatcher.AddJob(job)
+
+	ret := <-job.resp
+
+	resp.Ret = this.codec.Encode(ret)
+	return nil
 }
 
 func (this *UserConn) WriteResponse() {
