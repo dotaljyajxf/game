@@ -61,4 +61,6 @@ func main() {
 
 	initLog()
 
+	jobDispatcher = NewDispatcher()
+	jobDispatcher.Start()
 }

@@ -1,18 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4ddaf643-8263-4a72-9502-b6a055fd52e5" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/module/handleManager.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/module/user/user.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/netserver/codec.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/netserver/codec_pb.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/netserver/config.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/netserver/config.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/netserver/jobQueue.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/netserver/jobQueue.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/netserver/log/myLog.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/netserver/log/myLog.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/netserver/server.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/netserver/server.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/netserver/user_conn.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/netserver/user_conn.go" afterDir="false" />
-    </list>
+    <list default="true" id="4ddaf643-8263-4a72-9502-b6a055fd52e5" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,12 +9,12 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
         <entry file="file://D:/goWork/src/server/game/src/babeltime.com/majorserver/module/user/userimpl/user_logic.go">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="269">
-              <caret line="55" lean-forward="true" selection-start-line="55" selection-end-line="55" />
+              <caret line="55" selection-start-line="55" selection-end-line="55" />
               <folding>
                 <element signature="e#701#1080#0" expanded="true" />
               </folding>
@@ -37,7 +26,7 @@
         <entry file="file://D:/goWork/src/server/game/src/babeltime.com/majorserver/module/public/constant.go">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="286">
-              <caret line="13" column="7" lean-forward="true" selection-start-line="13" selection-start-column="7" selection-end-line="13" selection-end-column="7" />
+              <caret line="13" column="7" selection-start-line="13" selection-start-column="7" selection-end-line="13" selection-end-column="7" />
             </state>
           </provider>
         </entry>
@@ -45,8 +34,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://D:/goWork/src/server/game/src/babeltime.com/majorserver/module/guild/guildimpl/guild_rank.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="164" column="10" lean-forward="true" selection-start-line="164" selection-start-column="10" selection-end-line="164" selection-end-column="10" />
+            <state relative-caret-position="3432">
+              <caret line="164" column="10" selection-start-line="164" selection-start-column="10" selection-end-line="164" selection-end-column="10" />
               <folding>
                 <element signature="e#734#964#0" expanded="true" />
               </folding>
@@ -57,8 +46,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://D:/goWork/src/server/game/src/babeltime.com/majorserver/context.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-22">
-              <caret line="17" column="8" lean-forward="true" selection-start-line="17" selection-start-column="8" selection-end-line="17" selection-end-column="8" />
+            <state relative-caret-position="374">
+              <caret line="17" column="8" selection-start-line="17" selection-start-column="8" selection-end-line="17" selection-end-column="8" />
             </state>
           </provider>
         </entry>
@@ -66,8 +55,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://D:/goWork/src/server/game/src/babeltime.com/majorserver/module/arena/arenaimpl/arena_rank.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="506">
-              <caret line="50" column="53" lean-forward="true" selection-start-line="50" selection-start-column="53" selection-end-line="50" selection-end-column="53" />
+            <state relative-caret-position="924">
+              <caret line="50" column="53" selection-start-line="50" selection-start-column="53" selection-end-line="50" selection-end-column="53" />
               <folding>
                 <element signature="e#737#974#0" expanded="true" />
               </folding>
@@ -138,108 +127,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="ProjectPane" />
       <pane id="Scope" />
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="game" type="b2602c69:ProjectViewProjectNode" />
-              <item name="game" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="game" type="b2602c69:ProjectViewProjectNode" />
-              <item name="game" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="game" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-            </path>
-            <path>
-              <item name="game" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="GOPATH &lt;game&gt;" type="20ee2d1f:SyntheticLibraryElementNode" />
-            </path>
-            <path>
-              <item name="game" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="GOPATH &lt;game&gt;" type="20ee2d1f:SyntheticLibraryElementNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="game" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="GOPATH &lt;game&gt;" type="20ee2d1f:SyntheticLibraryElementNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="server" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="game" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="GOPATH &lt;game&gt;" type="20ee2d1f:SyntheticLibraryElementNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="server" type="462c0819:PsiDirectoryNode" />
-              <item name="game" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="game" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="GOPATH &lt;game&gt;" type="20ee2d1f:SyntheticLibraryElementNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="server" type="462c0819:PsiDirectoryNode" />
-              <item name="game" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="game" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="GOPATH &lt;game&gt;" type="20ee2d1f:SyntheticLibraryElementNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="server" type="462c0819:PsiDirectoryNode" />
-              <item name="game" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="babeltime.com" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="game" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="GOPATH &lt;game&gt;" type="20ee2d1f:SyntheticLibraryElementNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="server" type="462c0819:PsiDirectoryNode" />
-              <item name="game" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="babeltime.com" type="462c0819:PsiDirectoryNode" />
-              <item name="majorserver" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="game" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="GOPATH &lt;game&gt;" type="20ee2d1f:SyntheticLibraryElementNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="server" type="462c0819:PsiDirectoryNode" />
-              <item name="game" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="babeltime.com" type="462c0819:PsiDirectoryNode" />
-              <item name="majorserver" type="462c0819:PsiDirectoryNode" />
-              <item name="module" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="game" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="GOPATH &lt;game&gt;" type="20ee2d1f:SyntheticLibraryElementNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="server" type="462c0819:PsiDirectoryNode" />
-              <item name="game" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="babeltime.com" type="462c0819:PsiDirectoryNode" />
-              <item name="majorserver" type="462c0819:PsiDirectoryNode" />
-              <item name="module" type="462c0819:PsiDirectoryNode" />
-              <item name="guild" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -254,7 +143,7 @@
     <property name="go.gopath.indexing.explicitly.defined" value="true" />
     <property name="go.import.settings.migrated" value="true" />
     <property name="go.sdk.automatically.set" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="D:/goWork" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -279,18 +168,14 @@
   </component>
   <component name="SvnConfiguration">
     <configuration>C:\Users\admin\AppData\Roaming\Subversion</configuration>
+    <supportedVersion>125</supportedVersion>
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <layout>
-      <window_info id="Favorites" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19669509" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1988273" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Database Changes" />
-      <window_info anchor="bottom" id="Version Control" weight="0.32936078" />
-      <window_info anchor="bottom" id="Terminal" weight="0.32936078" />
-      <window_info anchor="bottom" id="Event Log" side_tool="true" />
+      <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32936078" />
       <window_info anchor="bottom" id="Run" order="2" />
@@ -298,10 +183,15 @@
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="right" id="Database" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Database Changes" order="8" />
+      <window_info anchor="bottom" id="Version Control" order="9" weight="0.32936078" />
+      <window_info anchor="bottom" id="Terminal" order="10" weight="0.32936078" />
+      <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Database" order="3" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -328,6 +218,20 @@
                 </list>
               </option>
             </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list />
+          </value>
+        </entry>
+        <entry key="User">
+          <value>
+            <list />
           </value>
         </entry>
       </map>
@@ -702,12 +606,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://D:/goWork/src/server/game/src/babeltime.com/majorserver/module/guild/guildimpl/guild_rank.go">
+    <entry file="file://D:/goWork/src/server/game/src/babeltime.com/majorserver/module/user/userimpl/user_logic.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="164" column="10" lean-forward="true" selection-start-line="164" selection-start-column="10" selection-end-line="164" selection-end-column="10" />
+        <state relative-caret-position="269">
+          <caret line="55" selection-start-line="55" selection-end-line="55" />
           <folding>
-            <element signature="e#734#964#0" expanded="true" />
+            <element signature="e#701#1080#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -715,33 +619,33 @@
     <entry file="file://D:/goWork/src/server/game/src/babeltime.com/majorserver/module/public/constant.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="286">
-          <caret line="13" column="7" lean-forward="true" selection-start-line="13" selection-start-column="7" selection-end-line="13" selection-end-column="7" />
+          <caret line="13" column="7" selection-start-line="13" selection-start-column="7" selection-end-line="13" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://D:/goWork/src/server/game/src/babeltime.com/majorserver/module/guild/guildimpl/guild_rank.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3432">
+          <caret line="164" column="10" selection-start-line="164" selection-start-column="10" selection-end-line="164" selection-end-column="10" />
+          <folding>
+            <element signature="e#734#964#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://D:/goWork/src/server/game/src/babeltime.com/majorserver/context.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-22">
-          <caret line="17" column="8" lean-forward="true" selection-start-line="17" selection-start-column="8" selection-end-line="17" selection-end-column="8" />
+        <state relative-caret-position="374">
+          <caret line="17" column="8" selection-start-line="17" selection-start-column="8" selection-end-line="17" selection-end-column="8" />
         </state>
       </provider>
     </entry>
     <entry file="file://D:/goWork/src/server/game/src/babeltime.com/majorserver/module/arena/arenaimpl/arena_rank.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="506">
-          <caret line="50" column="53" lean-forward="true" selection-start-line="50" selection-start-column="53" selection-end-line="50" selection-end-column="53" />
+        <state relative-caret-position="924">
+          <caret line="50" column="53" selection-start-line="50" selection-start-column="53" selection-end-line="50" selection-end-column="53" />
           <folding>
             <element signature="e#737#974#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://D:/goWork/src/server/game/src/babeltime.com/majorserver/module/user/userimpl/user_logic.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="269">
-          <caret line="55" lean-forward="true" selection-start-line="55" selection-end-line="55" />
-          <folding>
-            <element signature="e#701#1080#0" expanded="true" />
           </folding>
         </state>
       </provider>

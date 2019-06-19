@@ -1,21 +1,20 @@
 package netserver
 
 import (
-	"pb"
 	"sync"
 )
 
-const MAX_WORKERS = 10
-const MAX_JOB_QUEUES = 5
+const MAX_WORKERS = 20
+const MAX_JOB_QUEUES = 30
 
 type callBackFunc func([]string)
-type jobFunc func(aMethod string, aArgs []byte, resp *pb.TResponse)
+type jobFunc func(aMethod string, aArgs []byte,resp chan interface{})
 
 type Job struct {
 	DoJob  jobFunc
 	Method string
 	Arg    []byte
-	resp   *pb.TResponse
+	resp   chan interface{}
 }
 
 var jobPool = &sync.Pool{
@@ -28,7 +27,13 @@ func NewJob() *Job {
 	return jobPool.Get().(*Job)
 }
 
-var jobQ chan Job
+var jobDummy Job
+var jobDispacher *Dispatcher
+
+func (j *Job) Release() {
+	*j = jobDummy
+	jobPool.Put(j)
+}
 
 type Worker struct {
 	WorkQueue chan chan Job
@@ -52,7 +57,7 @@ func (w Worker) Start() {
 
 			select {
 			case job := <-w.JobQueue:
-				job.DoJob(job.Method, job.Arg, job.resp)
+				job.DoJob(job.Method,job.Arg,job.resp)
 			case <-w.Quit:
 				return
 			}
@@ -68,11 +73,16 @@ func (w Worker) Stop() {
 
 type Dispatcher struct {
 	WorkerPool chan chan Job
+	JobChan    chan Job
 }
 
 func NewDispatcher() *Dispatcher {
 	pool := make(chan chan Job, MAX_WORKERS)
-	return &Dispatcher{WorkerPool: pool}
+	return &Dispatcher{WorkerPool: pool, JobChan: make(chan Job, MAX_JOB_QUEUES*MAX_WORKERS)}
+}
+
+func (d *Dispatcher) AddJob(j Job) {
+	d.JobChan <- j
 }
 
 func (d *Dispatcher) Run() {
@@ -86,7 +96,7 @@ func (d *Dispatcher) Run() {
 func (d *Dispatcher) Dispatcher() {
 	for {
 		select {
-		case job := <-jobQ:
+		case job := <-d.JobChan:
 			go func(job Job) {
 				worker := <-d.WorkerPool
 				worker <- job

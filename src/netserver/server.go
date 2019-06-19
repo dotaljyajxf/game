@@ -7,8 +7,8 @@ import (
 )
 
 type Server struct {
-	logger   *log.Logger
-	listener *net.TCPListener
+	logger        *log.Logger
+	listener      *net.TCPListener
 }
 
 func NewServer(aAddr string) *Server {
