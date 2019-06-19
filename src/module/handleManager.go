@@ -37,5 +37,8 @@ func RegistFunc(name string, moduleVar interface{}) {
 }
 
 func handleRequest(aMethod string, aArgs []byte, resp chan interface{}) {
-
+	_, ok := funMap[aMethod]
+	if !ok {
+		panic("unkown method")
+	}
 }
