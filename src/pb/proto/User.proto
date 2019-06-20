@@ -1,0 +1,19 @@
+
+//
+//指定版本 3
+//
+syntax = "proto2";
+//--------------------------------------------------------------------------
+
+
+package pb;
+
+
+message TEmptyReq {
+}
+
+
+
+message TUserLoginResponse {
+optional string Name = 1;
+}

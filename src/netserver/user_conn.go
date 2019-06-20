@@ -1,13 +1,13 @@
 package netserver
 
 import (
+	"module"
 	"net"
 	"netserver/log"
 	"pb"
 	"runtime/debug"
 	"sync"
 	"time"
-	"module"
 )
 
 type INetCodec interface {
@@ -139,17 +139,27 @@ func (this *UserConn) HandleRequest() {
 
 func (this *UserConn) doRequest(aMethod string, aArgs []byte, resp *pb.TResponse) error {
 
-	job := NewJob()
-	job.Method = aMethod
-	job.Arg = this.codec.
-	job.DoJob = module.handleRequest
-	job.resp = make(chan interface{})
+	//job := NewJob()
+	//job.Method = aMethod
+	//job.Arg = aArgs
+	//job.DoJob = module.HandleRequest
+	//job.resp = make(chan interface{})
 
-	jobDispatcher.AddJob(job)
+	//jobDispatcher.AddJob(job)
+	ret := module.HandleRequestDirect(aMethod, aArgs)
 
-	ret := <-job.resp
-
-	resp.Ret = this.codec.Encode(ret)
+	var err error
+	resp.Ret, err = this.codec.Encode(ret)
+	if err != nil {
+		return err
+	}
+	str := "noError"
+	var errNo int32 = 0
+	t := uint32(time.Now().UnixNano())
+	resp.Time = &t
+	resp.Method = &aMethod
+	resp.Err = &errNo
+	resp.ErrMsg = &str
 	return nil
 }
 
