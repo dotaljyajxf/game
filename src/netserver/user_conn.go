@@ -4,19 +4,13 @@ import (
 	"net"
 	"netserver/log"
 	"pb"
+	"public"
 	"runtime/debug"
 	"strconv"
 	"strings"
 	"sync"
 	"time"
 )
-
-type TSession struct {
-	Uid      uint64 //TODO: 一个角色id，一个账号id。是否需要调整一个名字
-	Pid      uint32
-	ServerId int32
-	Ip       string
-}
 
 type INetCodec interface {
 	ReadRequest(interface{}, bool) (uint32, error)
@@ -40,7 +34,7 @@ type UserConn struct {
 	shutdown bool
 	uid      uint64
 	sync.Mutex
-	session TSession
+	session public.TSession
 }
 
 var gReponse_pool = &sync.Pool{
@@ -90,7 +84,7 @@ func NewUserConn(conn *net.TCPConn) *UserConn {
 		logoff:   false,
 		closing:  false,
 		shutdown: false,
-		session:  TSession{},
+		session:  public.TSession{},
 	}
 }
 
@@ -152,33 +146,33 @@ func (this *UserConn) HandleRequest() {
 
 func (this *UserConn) doRequest(aMethod string, aArgs []byte, resp *pb.TResponse) error {
 
-	context := NewContext()
-	context.logger = log.NewUserLogger()
+	context := public.NewContext()
+
 	context.InitSession(this.session)
 	context.StartMethod(aMethod)
 
-	call := NewCall()
+	call := public.NewCall()
 	call.Method = aMethod
 	call.Arg = aArgs
-	call.Done = make(chan *Call)
+	call.Done = make(chan *public.Call)
 	call.Context = context
 	call.DispatchCall()
 
 	<-call.Done
 
-	if context.isSessionChg {
-		if this.session.Uid == 0 && context.session.Uid > 0 {
-			this.uid = context.session.Uid
+	if context.IsSessionChanged() {
+		if this.session.Uid == 0 && context.GetSession().Uid > 0 {
+			this.uid = context.GetSession().Uid
 			//ret := AddUserToManager(this.id, this)
 			this.log.AddPairInfo("uid", strconv.FormatUint(this.uid, 10))
 		}
-		if this.session.Pid != 0 && context.session.Pid != this.session.Pid {
-			this.log.Fatal("can't chgsession pid not equal %d != %d", this.session.Pid, context.session.Pid)
+		if this.session.Pid != 0 && context.GetSession().Pid != this.session.Pid {
+			this.log.Fatal("can't chgsession pid not equal %d != %d", this.session.Pid, context.GetSession().Pid)
 		}
-		if this.session.Pid == 0 && context.session.Pid != 0 {
-			this.log.AddPairInfo("pid", strconv.Itoa(int(context.session.Pid)))
+		if this.session.Pid == 0 && context.GetSession().Pid != 0 {
+			this.log.AddPairInfo("pid", strconv.Itoa(int(context.GetSession().Pid)))
 		}
-		this.session = context.session
+		this.session = context.GetSession()
 	}
 	var err error
 	resp.Ret, err = this.codec.Encode(call.Ret)

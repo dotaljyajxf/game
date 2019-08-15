@@ -7,6 +7,7 @@ import (
 	"netserver/log"
 	"os"
 	"os/signal"
+	"public"
 	"syscall"
 )
 
@@ -22,7 +23,7 @@ func parseFlag() {
 	wanIp := flag.String("wanIp", "127.0.0.1", "wanIp")
 	wanPort := flag.Int("wanPort", 8877, "wanPort")
 	logPath := flag.String("logPath", "./log", "log path")
-	logName := flag.String("logName", "", "log name")
+	logName := flag.String("logName", "netserver", "log name")
 	logLv := flag.Int("logLv", 1, "log level")
 
 	flag.Parse()
@@ -70,7 +71,7 @@ func main() {
 	serverAddr := fmt.Sprintf("%s:%d", netserver.GlobalConfig.WanIp, netserver.GlobalConfig.WanPort)
 	server := netserver.NewServer(serverAddr)
 
-	netserver.InitWorker(100)
+	public.InitWorker(100)
 
 	server.Start()
 

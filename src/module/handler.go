@@ -1,14 +1,16 @@
 package module
 
-import "netserver"
+import (
+	"public"
+)
 
 type TContextHandler struct {
-	context *netserver.TContext
+	context *public.TContext
 }
 
-func (this *TContextHandler) SetContext(aContext *netserver.TContext) {
+func (this *TContextHandler) SetContext(aContext *public.TContext) {
 	this.context = aContext
 }
-func (this *TContextHandler) GetContext() *netserver.TContext {
+func (this *TContextHandler) GetContext() *public.TContext {
 	return this.context
 }

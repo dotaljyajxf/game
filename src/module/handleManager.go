@@ -3,7 +3,7 @@ package module
 import (
 	"fmt"
 	"github.com/golang/protobuf/proto"
-	"netserver"
+	"public"
 	"reflect"
 )
 
@@ -47,7 +47,7 @@ func RegisterFunc(name string, moduleVar interface{}) {
 	}
 }
 
-func HandleRequestDirect(call *netserver.Call) {
+func HandleRequestDirect(call *public.Call) {
 
 	context := call.Context
 	aMethod := call.Method

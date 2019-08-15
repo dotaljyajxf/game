@@ -1,4 +1,4 @@
-package netserver
+package public
 
 import (
 	"netserver/log"
@@ -6,6 +6,13 @@ import (
 	"sync"
 	"time"
 )
+
+type TSession struct {
+	Uid      uint64 //TODO: 一个角色id，一个账号id。是否需要调整一个名字
+	Pid      uint32
+	ServerId int32
+	Ip       string
+}
 
 var dummyContext TContext
 
@@ -41,6 +48,7 @@ func (this *TContext) StartMethod(method string) {
 	this.moduleMethod = method
 	this.reqStartTime = time.Now()
 	this.isSessionChg = false
+	this.logger = log.NewUserLogger()
 }
 
 func (this *TContext) GetLogger() *log.UserLogger {
