@@ -1,14 +1,17 @@
 package module
 
 import (
+	"fmt"
 	"github.com/golang/protobuf/proto"
+	"netserver"
 	"reflect"
 )
 
 type funcType struct {
-	method   reflect.Method
-	argType  reflect.Type
-	recvType reflect.Value
+	method  reflect.Method
+	argType reflect.Type
+	recvVal reflect.Value
+	recvTyp reflect.Type
 }
 
 var funMap map[string]*funcType
@@ -16,6 +19,10 @@ var funMap map[string]*funcType
 func RegisterFunc(name string, moduleVar interface{}) {
 	v := reflect.ValueOf(moduleVar)
 	vt := v.Type()
+	rcvr := v.Elem().Interface()
+	if _, ok := reflect.TypeOf(rcvr).MethodByName("SetContext"); !ok {
+		panic(fmt.Sprintf("module:%s need has method:%s", name, "SetContext"))
+	}
 
 	funcNum := v.NumMethod()
 
@@ -35,48 +42,51 @@ func RegisterFunc(name string, moduleVar interface{}) {
 
 		argType := fType.In(0)
 
-		funMap[fullName] = &funcType{vt.Method(i), argType, v}
+		funMap[fullName] = &funcType{vt.Method(i), argType, reflect.ValueOf(rcvr),
+			reflect.TypeOf(rcvr)}
 	}
 }
 
-func HandleRequest(aMethod string, aArgs []byte, resp chan interface{}) {
+func HandleRequestDirect(call *netserver.Call) {
+
+	context := call.Context
+	aMethod := call.Method
+	aArgs := call.Arg
+	aLog := context.GetLogger()
+
 	_, ok := funMap[aMethod]
 	if !ok {
-		panic("unkown method")
+		aLog.Fatal("not found method!")
+		return
 	}
 	funcObj := funMap[aMethod]
-	arg := reflect.New(funcObj.argType)
 
-	err := proto.Unmarshal(aArgs, arg.Interface().(proto.Message))
+	var argv reflect.Value
+	isVal := false
+	if funcObj.argType.Kind() == reflect.Ptr {
+		argv = reflect.New(funcObj.argType.Elem())
+	} else {
+		isVal = true
+		argv = reflect.New(funcObj.argType)
+	}
+
+	rcvr := reflect.New(funcObj.recvTyp)
+	setContextFunc := rcvr.MethodByName("SetContext")
+	setContextFunc.Call([]reflect.Value{reflect.ValueOf(context)})
+
+	err := proto.Unmarshal(aArgs, argv.Interface().(proto.Message))
 	if err != nil {
-		panic("args Unmarshal err")
+		aLog.Fatal("arg type error")
+		return
+	}
+
+	if isVal {
+		argv = argv.Elem()
 	}
 
 	arrArgValues := make([]reflect.Value, 0)
-	arrArgValues = append(arrArgValues, arg)
+	arrArgValues = append(arrArgValues, argv)
 
 	ret := funcObj.method.Func.Call(arrArgValues)
-
-	resp <- ret[0].Interface()
-}
-
-func HandleRequestDirect(aMethod string, aArgs []byte) interface{} {
-	_, ok := funMap[aMethod]
-	if !ok {
-		panic("unkown method")
-	}
-	funcObj := funMap[aMethod]
-	arg := reflect.New(funcObj.argType)
-
-	err := proto.Unmarshal(aArgs, arg.Interface().(proto.Message))
-	if err != nil {
-		panic("args Unmarshal err")
-	}
-
-	arrArgValues := make([]reflect.Value, 0)
-	arrArgValues = append(arrArgValues, arg)
-
-	ret := funcObj.method.Func.Call(arrArgValues)
-
-	return ret[0].Interface()
+	call.Ret = ret[0].Interface()
 }

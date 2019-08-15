@@ -1,14 +1,22 @@
 package netserver
 
 import (
-	"module"
 	"net"
 	"netserver/log"
 	"pb"
 	"runtime/debug"
+	"strconv"
+	"strings"
 	"sync"
 	"time"
 )
+
+type TSession struct {
+	Uid      uint64 //TODO: 一个角色id，一个账号id。是否需要调整一个名字
+	Pid      uint32
+	ServerId int32
+	Ip       string
+}
 
 type INetCodec interface {
 	ReadRequest(interface{}, bool) (uint32, error)
@@ -32,6 +40,7 @@ type UserConn struct {
 	shutdown bool
 	uid      uint64
 	sync.Mutex
+	session TSession
 }
 
 var gReponse_pool = &sync.Pool{
@@ -81,10 +90,13 @@ func NewUserConn(conn *net.TCPConn) *UserConn {
 		logoff:   false,
 		closing:  false,
 		shutdown: false,
+		session:  TSession{},
 	}
 }
 
 func (this *UserConn) Start() {
+	ips := strings.Split(this.conn.RemoteAddr().String(), ":")
+	this.session.Ip = ips[0]
 	this.goRoutine("readRequest", this.routineReadRequest)
 
 	this.goRoutine("handleRequest", this.HandleRequest)
@@ -127,6 +139,7 @@ func (this *UserConn) HandleRequest() {
 				running = false
 				break
 			}
+			this.log.Info("doRequest %s  response %s", req.GetMethod(), resp.Ret)
 			this.respChan <- resp
 
 			FreeRequest(req)
@@ -139,20 +152,40 @@ func (this *UserConn) HandleRequest() {
 
 func (this *UserConn) doRequest(aMethod string, aArgs []byte, resp *pb.TResponse) error {
 
-	//job := NewJob()
-	//job.Method = aMethod
-	//job.Arg = aArgs
-	//job.DoJob = module.HandleRequest
-	//job.resp = make(chan interface{})
+	context := NewContext()
+	context.logger = log.NewUserLogger()
+	context.InitSession(this.session)
+	context.StartMethod(aMethod)
 
-	//jobDispatcher.AddJob(job)
-	ret := module.HandleRequestDirect(aMethod, aArgs)
+	call := NewCall()
+	call.Method = aMethod
+	call.Arg = aArgs
+	call.Done = make(chan *Call)
+	call.Context = context
+	call.DispatchCall()
 
+	<-call.Done
+
+	if context.isSessionChg {
+		if this.session.Uid == 0 && context.session.Uid > 0 {
+			this.uid = context.session.Uid
+			//ret := AddUserToManager(this.id, this)
+			this.log.AddPairInfo("uid", strconv.FormatUint(this.uid, 10))
+		}
+		if this.session.Pid != 0 && context.session.Pid != this.session.Pid {
+			this.log.Fatal("can't chgsession pid not equal %d != %d", this.session.Pid, context.session.Pid)
+		}
+		if this.session.Pid == 0 && context.session.Pid != 0 {
+			this.log.AddPairInfo("pid", strconv.Itoa(int(context.session.Pid)))
+		}
+		this.session = context.session
+	}
 	var err error
-	resp.Ret, err = this.codec.Encode(ret)
+	resp.Ret, err = this.codec.Encode(call.Ret)
 	if err != nil {
 		return err
 	}
+
 	str := "noError"
 	var errNo int32 = 0
 	t := uint32(time.Now().UnixNano())
@@ -160,6 +193,8 @@ func (this *UserConn) doRequest(aMethod string, aArgs []byte, resp *pb.TResponse
 	resp.Method = &aMethod
 	resp.Err = &errNo
 	resp.ErrMsg = &str
+	context.Put()
+	call.Put()
 	return nil
 }
 

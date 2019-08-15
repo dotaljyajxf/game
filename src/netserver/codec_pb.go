@@ -36,10 +36,9 @@ func (this *TCodePb) CheckSum(checkSum []byte, aDataSize uint32) bool {
 	for i := 0; i < len(body)-1; i++ {
 		body[i] = body[i] ^ body[i+1]
 	}
+	body[aDataSize-1] = body[aDataSize-1] ^ byte(aDataSize&0x00ff)
 
 	md5Obj := md5.New()
-
-	body[aDataSize-1] = body[aDataSize-1] ^ byte(aDataSize&0x00ff)
 
 	for i := 0; i < len(GlobalConfig.ArrMessCode); i++ {
 		messCode := GlobalConfig.ArrMessCode[i]
