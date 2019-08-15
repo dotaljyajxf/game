@@ -7,7 +7,6 @@ import (
 	"netserver/log"
 	"os"
 	"os/signal"
-	"public"
 	"syscall"
 )
 
@@ -71,7 +70,7 @@ func main() {
 	serverAddr := fmt.Sprintf("%s:%d", netserver.GlobalConfig.WanIp, netserver.GlobalConfig.WanPort)
 	server := netserver.NewServer(serverAddr)
 
-	public.InitWorker(100)
+	netserver.InitWorker(100)
 
 	server.Start()
 

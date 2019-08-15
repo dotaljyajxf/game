@@ -1,4 +1,4 @@
-package public
+package netserver
 
 import (
 	"netserver/log"

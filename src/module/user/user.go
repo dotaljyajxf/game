@@ -1,15 +1,17 @@
 package user
 
-import "module"
+import (
+	"netserver"
+)
 import "pb"
 
 type UserRpc struct {
-	module.TContextHandler
+	netserver.TContextHandler
 }
 
 func init() {
 	var dummyUser = UserRpc{}
-	module.RegisterFunc("user", &dummyUser)
+	netserver.RegisterFunc("user", &dummyUser)
 }
 
 func (this *UserRpc) Login(arg *pb.TEmptyReq) (ret *pb.TUserLoginResponse) {

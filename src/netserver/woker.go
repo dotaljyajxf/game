@@ -1,7 +1,6 @@
-package public
+package netserver
 
 import (
-	"module"
 	"sync"
 )
 
@@ -56,5 +55,5 @@ func runWork() {
 }
 
 func execute(call *Call) {
-	module.HandleRequestDirect(call)
+	HandleRequestDirect(call)
 }

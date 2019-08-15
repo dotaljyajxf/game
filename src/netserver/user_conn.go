@@ -4,7 +4,6 @@ import (
 	"net"
 	"netserver/log"
 	"pb"
-	"public"
 	"runtime/debug"
 	"strconv"
 	"strings"
@@ -34,7 +33,7 @@ type UserConn struct {
 	shutdown bool
 	uid      uint64
 	sync.Mutex
-	session public.TSession
+	session TSession
 }
 
 var gReponse_pool = &sync.Pool{
@@ -84,7 +83,7 @@ func NewUserConn(conn *net.TCPConn) *UserConn {
 		logoff:   false,
 		closing:  false,
 		shutdown: false,
-		session:  public.TSession{},
+		session:  TSession{},
 	}
 }
 
@@ -146,15 +145,15 @@ func (this *UserConn) HandleRequest() {
 
 func (this *UserConn) doRequest(aMethod string, aArgs []byte, resp *pb.TResponse) error {
 
-	context := public.NewContext()
+	context := NewContext()
 
 	context.InitSession(this.session)
 	context.StartMethod(aMethod)
 
-	call := public.NewCall()
+	call := NewCall()
 	call.Method = aMethod
 	call.Arg = aArgs
-	call.Done = make(chan *public.Call)
+	call.Done = make(chan *Call)
 	call.Context = context
 	call.DispatchCall()
 
