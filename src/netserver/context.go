@@ -27,6 +27,7 @@ func NewContext() *TContext {
 }
 
 func (c *TContext) Put() {
+	c.logger.Put()
 	*c = dummyContext
 	contextPool.Put(c)
 }

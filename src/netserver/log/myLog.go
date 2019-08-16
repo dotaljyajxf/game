@@ -22,7 +22,7 @@ type Logger struct {
 
 type UserLogger struct {
 	*Logger
-	buf []byte
+	userBuf []byte
 }
 
 const (
@@ -35,7 +35,7 @@ const (
 
 var g_bufPool = &sync.Pool{
 	New: func() interface{} {
-		return make([]byte, 0, 100)
+		return make([]byte, 0, 500)
 
 	},
 }
@@ -61,6 +61,7 @@ func (this *Logger) SetLogLevel(lv uint64) {
 }
 
 func (this *Logger) write(fp *os.File, logtype string, calldepth int, bufInfo string, s string) {
+
 	cNow := time.Now()
 	cTime := fmt.Sprintf("%04d-%02d-%02d %02d:%02d:%02d %06d",
 		cNow.Year(), int(cNow.Month()), cNow.Day(), cNow.Hour(), cNow.Minute(), cNow.Second(), cNow.Nanosecond())
@@ -84,7 +85,6 @@ func (this *Logger) write(fp *os.File, logtype string, calldepth int, bufInfo st
 	this.Lock()
 	fp.WriteString(ret)
 	this.Unlock()
-
 }
 
 func (this *Logger) PrintStdout(format string, v ...interface{}) {
@@ -117,12 +117,11 @@ func (this *Logger) SetLogPath(dirpath string, name string) {
 }
 
 func (this *UserLogger) AddPairInfo(field string, data string) {
-	this.buf = append(this.buf, fmt.Sprintf("[%s:%s]", field, data)...)
-
+	this.userBuf = append(this.userBuf, fmt.Sprintf("[%s:%s]", field, data)...)
 }
 
 func (this *UserLogger) AddSingleInfo(s string) {
-	this.buf = append(this.buf, fmt.Sprintf("[%s]", s)...)
+	this.userBuf = append(this.userBuf, fmt.Sprintf("[%s]", s)...)
 
 }
 
@@ -180,6 +179,6 @@ func (this *Logger) Flush() {
 }
 
 func (this *UserLogger) Put() {
-	this.buf = this.buf[:0]
-	g_bufPool.Put(this.buf)
+	this.userBuf = this.userBuf[:0]
+	g_bufPool.Put(this.userBuf)
 }

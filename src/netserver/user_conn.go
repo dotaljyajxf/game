@@ -124,19 +124,17 @@ func (this *UserConn) HandleRequest() {
 					}
 					this.respChan <- resp
 				}
+			} else {
+				err := this.doRequest(req.GetMethod(), req.GetArgs(), resp)
+				if err != nil {
+					this.log.Fatal("doRequest %s  err %s", req.GetMethod(), err)
+					running = false
+					break
+				}
+				this.log.Info("doRequest %s  response %s", req.GetMethod(), resp.Ret)
+				this.respChan <- resp
 			}
-
-			err := this.doRequest(req.GetMethod(), req.GetArgs(), resp)
-			if err != nil {
-				this.log.Fatal("doRequest %s  err %s", req.GetMethod(), err)
-				running = false
-				break
-			}
-			this.log.Info("doRequest %s  response %s", req.GetMethod(), resp.Ret)
-			this.respChan <- resp
-
 			FreeRequest(req)
-			FreeResponse(resp)
 		}
 	}
 
@@ -147,8 +145,8 @@ func (this *UserConn) doRequest(aMethod string, aArgs []byte, resp *pb.TResponse
 
 	context := NewContext()
 
-	context.InitSession(this.session)
 	context.StartMethod(aMethod)
+	context.InitSession(this.session)
 
 	call := NewCall()
 	call.Method = aMethod
