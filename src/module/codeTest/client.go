@@ -6,7 +6,8 @@ import (
 	"pb"
 )
 
-var wanAddr = "106.12.16.96:2344"
+//var wanAddr = "106.12.16.96:2344"
+var wanAddr = "192.168.52.67:9999"
 
 type UserClient struct {
 }

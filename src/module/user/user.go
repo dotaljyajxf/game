@@ -1,6 +1,7 @@
 package user
 
 import (
+	"fmt"
 	"netserver"
 )
 import "pb"
@@ -18,6 +19,8 @@ func (this *UserRpc) Login(arg *pb.TEmptyReq) (ret *pb.TUserLoginResponse) {
 	ret = new(pb.TUserLoginResponse)
 
 	context := this.GetContext()
+
+	fmt.Println(context)
 	log := context.GetLogger()
 
 	log.Info("Begin Login", context.GetUid())
@@ -25,6 +28,7 @@ func (this *UserRpc) Login(arg *pb.TEmptyReq) (ret *pb.TUserLoginResponse) {
 	name := "haha"
 	ret.Name = &name
 
+	context.SetUid(10001)
 	log.Info("Finish Login", context.GetUid())
 	return ret
 }

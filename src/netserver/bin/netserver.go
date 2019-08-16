@@ -3,6 +3,7 @@ package main
 import (
 	"flag"
 	"fmt"
+	_ "module/dummy"
 	"netserver"
 	"netserver/log"
 	"os"
@@ -34,6 +35,12 @@ func parseFlag() {
 	config.LogLevel = *logLv
 	config.WanIp = *wanIp
 	config.WanPort = *wanPort
+
+	config.MaxClientReq = 20
+	config.FrontPingMs = 1000
+	config.UserIdleTimeMs = 3600000
+	config.CommonPackageLen = 5120
+	config.MaxPackageLen = 5120
 }
 
 func parseInIConf() {

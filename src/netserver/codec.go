@@ -57,7 +57,7 @@ func NewNetCodec(aRwc io.ReadWriteCloser) *TNetCodec {
 	commonPackageLen := GlobalConfig.CommonPackageLen
 	maxPackageLen := GlobalConfig.MaxPackageLen
 
-	codec := NewCodecPb(limitedReader, writeBuf, commonPackageLen)
+	codec := NewCodecPb(aRwc, writeBuf, commonPackageLen)
 
 	return &TNetCodec{
 		rwc:             aRwc,
@@ -76,6 +76,7 @@ func NewNetCodec(aRwc io.ReadWriteCloser) *TNetCodec {
 func (this *TNetCodec) ReadRequest(aReq interface{}, isCheckSum bool) (uint32, error) {
 	rb := this.readHeaderBuf[0:this.headSize]
 	n, err := io.ReadFull(this.rwc, rb)
+
 	if err != nil {
 		return 0, err
 	}

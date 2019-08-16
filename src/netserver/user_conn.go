@@ -110,7 +110,7 @@ func (this *UserConn) HandleRequest() {
 			resp := NewTResponse()
 
 			if this.uid == 0 {
-				if req.GetMethod() != "User.Login" {
+				if req.GetMethod() != "user.Login" {
 					this.log.Fatal("user need login")
 					//TODO write a err 登录并发
 					running = false

@@ -92,6 +92,7 @@ func (this *TCodePb) ReadBody(aReq interface{}, aDataSize uint32) error {
 	if err != nil {
 		return err
 	}
+
 	if n != int(aDataSize) {
 		return fmt.Errorf("readBody size err")
 	}

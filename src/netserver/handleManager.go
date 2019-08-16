@@ -13,13 +13,13 @@ type funcType struct {
 	recvTyp reflect.Type
 }
 
-var funMap map[string]*funcType
+var funMap = make(map[string]*funcType, 300)
 
 func RegisterFunc(name string, moduleVar interface{}) {
 	v := reflect.ValueOf(moduleVar)
 	vt := v.Type()
 	rcvr := v.Elem().Interface()
-	if _, ok := reflect.TypeOf(rcvr).MethodByName("SetContext"); !ok {
+	if _, ok := vt.MethodByName("SetContext"); !ok {
 		panic(fmt.Sprintf("module:%s need has method:%s", name, "SetContext"))
 	}
 
@@ -27,21 +27,25 @@ func RegisterFunc(name string, moduleVar interface{}) {
 
 	for i := 0; i < funcNum; i++ {
 		funcName := vt.Method(i).Name
+
+		if funcName == "SetContext" || funcName == "GetContext" {
+			continue
+		}
 		fullName := name + "." + funcName
 		_, ok := funMap[fullName]
 		if ok {
 			return
 		}
-
 		fType := vt.Method(i).Type
 		argNum := fType.NumIn()
-		if argNum > 1 {
+
+		if argNum != 2 {
 			panic("rpc function must one arg")
 		}
 
-		argType := fType.In(0)
+		argType := fType.In(1)
 
-		funMap[fullName] = &funcType{vt.Method(i), argType, reflect.ValueOf(rcvr),
+		funMap[fullName] = &funcType{vt.Method(i), argType, v,
 			reflect.TypeOf(rcvr)}
 	}
 }
@@ -69,8 +73,7 @@ func HandleRequestDirect(call *Call) {
 		argv = reflect.New(funcObj.argType)
 	}
 
-	rcvr := reflect.New(funcObj.recvTyp)
-	setContextFunc := rcvr.MethodByName("SetContext")
+	setContextFunc := funcObj.recvVal.MethodByName("SetContext")
 	setContextFunc.Call([]reflect.Value{reflect.ValueOf(context)})
 
 	err := proto.Unmarshal(aArgs, argv.Interface().(proto.Message))
@@ -84,6 +87,7 @@ func HandleRequestDirect(call *Call) {
 	}
 
 	arrArgValues := make([]reflect.Value, 0)
+	arrArgValues = append(arrArgValues, funcObj.recvVal)
 	arrArgValues = append(arrArgValues, argv)
 
 	ret := funcObj.method.Func.Call(arrArgValues)
