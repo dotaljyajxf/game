@@ -1,12 +1,12 @@
 package codeTest
 
 import (
-	"golang.org/x/tools/go/ssa/interp/testdata/src/fmt"
+	"fmt"
 	"net"
 	"pb"
 )
 
-var wanAddr = "192.168.1.185:2000"
+var wanAddr = "106.12.16.96:2344"
 
 type UserClient struct {
 }

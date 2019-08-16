@@ -39,20 +39,14 @@ var g_bufPool = &sync.Pool{
 
 	},
 }
-var mLog *Logger
+var mLog = Logger{logLv: 1, logDir: "./log"}
 
 func NewLogger() *Logger {
-	if mLog == nil {
-		return &Logger{logLv: 1, logDir: "./log"}
-
-	}
-
-	return mLog
-
+	return &mLog
 }
 
 func NewUserLogger() *UserLogger {
-	return &UserLogger{mLog, g_bufPool.Get().([]byte)}
+	return &UserLogger{&mLog, g_bufPool.Get().([]byte)}
 
 }
 

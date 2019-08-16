@@ -72,6 +72,7 @@ func main() {
 
 	netserver.InitWorker(100)
 
+	gLog.Info("Init Worker finish %d", 100)
 	server.Start()
 
 	quit := make(chan os.Signal, 1)
