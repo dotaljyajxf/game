@@ -27,9 +27,10 @@ func GetUserObj(uid int64, context *netserver.TContext) *UserObj {
 
 	userObj := new(UserObj)
 	log := context.GetLogger()
+	log.Info("getUserObj user: %s", userObj)
 	has, err := context.DB().ID(uid).Get(userObj.userTbl)
 	if err != nil {
-		log.Fatal("getUserObj error uid:%s err:%s", uid, err)
+		log.Fatal("getUserObj error uid:%d err:%s", uid, err)
 	}
 	if !has {
 		initUser(uid, context, userObj)
