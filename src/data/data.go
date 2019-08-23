@@ -33,7 +33,7 @@ func InitDb(dbSrc string, logPath string) error {
 	mData.SetDefaultCacher(cacher)
 	//mData.ClearCacheBean()
 
-	err = mData.Sync2(db.DbMap)
+	err = mData.Sync2(db.DbMap...)
 
 	return err
 
