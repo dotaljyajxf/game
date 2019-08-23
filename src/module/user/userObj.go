@@ -40,7 +40,7 @@ func GetUserObj(uid int64, context *netserver.TContext) *UserObj {
 }
 
 func (this *UserObj) GetAllInfo() *db.User {
-	return this.userTbl
+	return &this.userTbl
 }
 
 func (this *UserObj) GetUname() string {
