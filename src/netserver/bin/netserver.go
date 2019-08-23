@@ -9,6 +9,7 @@ import (
 	"netserver/log"
 	"os"
 	"os/signal"
+	"path"
 	"syscall"
 )
 
@@ -79,7 +80,8 @@ func main() {
 	serverAddr := fmt.Sprintf("%s:%d", netserver.GlobalConfig.WanIp, netserver.GlobalConfig.WanPort)
 	server := netserver.NewServer(serverAddr)
 
-	err := data.InitDb(netserver.GlobalConfig.DBSource, netserver.GlobalConfig.LogPath)
+	logFileDb := path.Join(netserver.GlobalConfig.LogPath, "xorm.log")
+	err := data.InitDb(netserver.GlobalConfig.DBSource, logFileDb)
 	if err != nil {
 		gLog.Fatal("init dbsrc:%s error : %s", netserver.GlobalConfig.DBSource, err)
 		return

@@ -3,7 +3,6 @@ package data
 import (
 	"data/db"
 	_ "github.com/go-sql-driver/mysql"
-	"github.com/go-xorm/core"
 	"github.com/go-xorm/xorm"
 	"os"
 )
@@ -25,7 +24,8 @@ func InitDb(dbSrc string, logPath string) error {
 	if err != nil {
 		panic("create logFile err")
 	}
-	mData.Logger().SetLevel(core.LOG_DEBUG)
+	//TODO
+	mData.Logger().SetLevel(1)
 	mData.SetLogger(xorm.NewSimpleLogger(f))
 
 	//采用了LRU算法的一个缓存，缓存方式是存放到内存中，缓存struct的记录数为500条
