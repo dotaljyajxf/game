@@ -1,0 +1,212 @@
+[2019-08-16 10:42:36 410406800][FATAL][E:/game/src/netserver/user_conn.go:263] readRequest err:read tcp4 192.168.52.67:9999->192.168.52.67:61682: i/o timeout
+[2019-08-16 10:47:40 17225800][FATAL][E:/game/src/netserver/user_conn.go:263] readRequest err:packegLen over limit 17
+[2019-08-16 10:53:28 287448300][FATAL][E:/game/src/netserver/user_conn.go:263] readRequest err:EOF
+[2019-08-16 11:00:06 15872500][FATAL][E:/game/src/netserver/user_conn.go:263] readRequest err:EOF
+[2019-08-16 11:10:20 117660400][FATAL][E:/game/src/netserver/user_conn.go:263] readRequest err:EOF
+[2019-08-16 11:17:32 553283500][FATAL][E:/game/src/netserver/user_conn.go:263] readRequest err:EOF
+[2019-08-16 11:32:54 262578600][FATAL][E:/game/src/netserver/user_conn.go:263] readRequest err:EOF
+[2019-08-16 11:36:43 532103000][FATAL][E:/game/src/netserver/user_conn.go:263] readRequest err:EOF
+[2019-08-16 11:39:07 168799000][FATAL][E:/game/src/netserver/user_conn.go:114] user need login
+[2019-08-16 11:39:07 169802700][FATAL][E:/game/src/netserver/user_conn.go:263] readRequest err:read tcp4 192.168.52.67:9999->192.168.52.67:63838: use of closed network connection
+[2019-08-16 11:41:29 849442400][FATAL][E:/game/src/netserver/handleManager.go:58] not found method!
+[2019-08-16 11:41:29 849442400][FATAL][E:/game/src/netserver/user_conn.go:121] doRequest user.Login  err change protoMessage err
+[2019-08-16 11:41:29 850444900][FATAL][E:/game/src/netserver/user_conn.go:263] readRequest err:read tcp4 192.168.52.67:9999->192.168.52.67:63955: use of closed network connection
+[2019-08-16 15:08:01 737764000][FATAL][E:/game/src/netserver/user_conn.go:239] client 192.168.52.67:54160 err handleRequest  recover runtime error: invalid memory address or nil pointer dereference stack goroutine 107 [running]:
+runtime/debug.Stack(0xc04206e930, 0xc0421c60e0, 0x13)
+	C:/Go/src/runtime/debug/stack.go:24 +0xae
+netserver.(*UserConn).goRoutine.func1.1(0xc042038480, 0x6350ea, 0xd)
+	E:/game/src/netserver/user_conn.go:240 +0xdb
+panic(0x5fe260, 0x74b6a0)
+	C:/Go/src/runtime/panic.go:491 +0x291
+netserver/log.(*UserLogger).AddPairInfo(0x0, 0x633673, 0x3, 0xc0421b4130, 0x5)
+	E:/game/src/netserver/log/myLog.go:120 +0x145
+netserver.(*TContext).InitSession(0xc0421a6070, 0x2711, 0x0, 0xc042170e00, 0xd)
+	E:/game/src/netserver/context.go:73 +0x10a
+netserver.(*UserConn).doRequest(0xc042038480, 0xc042186080, 0xa, 0x76e500, 0x0, 0x0, 0xc0421a6000, 0x0, 0x0)
+	E:/game/src/netserver/user_conn.go:150 +0xc0
+netserver.(*UserConn).HandleRequest(0xc042038480)
+	E:/game/src/netserver/user_conn.go:129 +0x37c
+netserver.(*UserConn).HandleRequest-fm()
+	E:/game/src/netserver/user_conn.go:95 +0x31
+netserver.(*UserConn).goRoutine.func1()
+	E:/game/src/netserver/user_conn.go:243 +0x6e
+created by netserver.(*UserConn).goRoutine
+	E:/game/src/netserver/user_conn.go:245 +0xa7
+[2019-08-16 15:08:01 748765600][FATAL][E:/game/src/netserver/user_conn.go:263] readRequest err:read tcp4 192.168.52.67:9999->192.168.52.67:54160: wsarecv: An existing connection was forcibly closed by the remote host.
+[2019-08-16 15:35:39 823696000][FATAL][E:/game/src/netserver/user_conn.go:239] client 192.168.52.67:50817 err handleRequest  recover runtime error: invalid memory address or nil pointer dereference stack goroutine 114 [running]:
+runtime/debug.Stack(0xc0421b61e0, 0xc042184140, 0x13)
+	C:/Go/src/runtime/debug/stack.go:24 +0xae
+netserver.(*UserConn).goRoutine.func1.1(0xc0420e0d80, 0x6350ea, 0xd)
+	E:/game/src/netserver/user_conn.go:240 +0xdb
+panic(0x5fe260, 0x74b6a0)
+	C:/Go/src/runtime/panic.go:491 +0x291
+netserver/log.(*UserLogger).AddPairInfo(0x0, 0x633673, 0x3, 0xc042186150, 0x5)
+	E:/game/src/netserver/log/myLog.go:120 +0x145
+netserver.(*TContext).InitSession(0xc04219c380, 0x2711, 0x0, 0xc0421c6200, 0xd)
+	E:/game/src/netserver/context.go:73 +0x10a
+netserver.(*UserConn).doRequest(0xc0420e0d80, 0xc042186090, 0xa, 0x76e500, 0x0, 0x0, 0xc04219c310, 0x0, 0x0)
+	E:/game/src/netserver/user_conn.go:150 +0xc0
+netserver.(*UserConn).HandleRequest(0xc0420e0d80)
+	E:/game/src/netserver/user_conn.go:129 +0x37c
+netserver.(*UserConn).HandleRequest-fm()
+	E:/game/src/netserver/user_conn.go:95 +0x31
+netserver.(*UserConn).goRoutine.func1()
+	E:/game/src/netserver/user_conn.go:243 +0x6e
+created by netserver.(*UserConn).goRoutine
+	E:/game/src/netserver/user_conn.go:245 +0xa7
+[2019-08-16 15:35:39 842696300][FATAL][E:/game/src/netserver/user_conn.go:263] readRequest err:read tcp4 192.168.52.67:9999->192.168.52.67:50817: wsarecv: An existing connection was forcibly closed by the remote host.
+[2019-08-16 15:36:48 44148800][FATAL][E:/game/src/netserver/user_conn.go:239] client 192.168.52.67:50856 err handleRequest  recover runtime error: invalid memory address or nil pointer dereference stack goroutine 130 [running]:
+runtime/debug.Stack(0xc042220030, 0xc042184360, 0x13)
+	C:/Go/src/runtime/debug/stack.go:24 +0xae
+netserver.(*UserConn).goRoutine.func1.1(0xc0420a0c00, 0x6350ea, 0xd)
+	E:/game/src/netserver/user_conn.go:240 +0xdb
+panic(0x5fe260, 0x74b6a0)
+	C:/Go/src/runtime/panic.go:491 +0x291
+netserver/log.(*UserLogger).AddPairInfo(0x0, 0x633673, 0x3, 0xc042186460, 0x5)
+	E:/game/src/netserver/log/myLog.go:120 +0x145
+netserver.(*TContext).InitSession(0xc04219c540, 0x2711, 0x0, 0xc0422061a0, 0xd)
+	E:/game/src/netserver/context.go:73 +0x10a
+netserver.(*UserConn).doRequest(0xc0420a0c00, 0xc0421863a0, 0xa, 0x76e500, 0x0, 0x0, 0xc04219c4d0, 0x0, 0x0)
+	E:/game/src/netserver/user_conn.go:150 +0xc0
+netserver.(*UserConn).HandleRequest(0xc0420a0c00)
+	E:/game/src/netserver/user_conn.go:129 +0x37c
+netserver.(*UserConn).HandleRequest-fm()
+	E:/game/src/netserver/user_conn.go:95 +0x31
+netserver.(*UserConn).goRoutine.func1()
+	E:/game/src/netserver/user_conn.go:243 +0x6e
+created by netserver.(*UserConn).goRoutine
+	E:/game/src/netserver/user_conn.go:245 +0xa7
+[2019-08-16 15:36:48 68149200][FATAL][E:/game/src/netserver/user_conn.go:263] readRequest err:read tcp4 192.168.52.67:9999->192.168.52.67:50856: wsarecv: An existing connection was forcibly closed by the remote host.
+[2019-08-16 15:37:20 838665000][FATAL][E:/game/src/netserver/user_conn.go:239] client 192.168.52.67:50889 err handleRequest  recover runtime error: invalid memory address or nil pointer dereference stack goroutine 107 [running]:
+runtime/debug.Stack(0xc04206e930, 0xc042184100, 0x13)
+	C:/Go/src/runtime/debug/stack.go:24 +0xae
+netserver.(*UserConn).goRoutine.func1.1(0xc042038480, 0x634f22, 0xd)
+	E:/game/src/netserver/user_conn.go:240 +0xdb
+panic(0x5fe0a0, 0x74b6a0)
+	C:/Go/src/runtime/panic.go:491 +0x291
+netserver/log.(*UserLogger).AddPairInfo(0x0, 0x6334b3, 0x3, 0xc0421861a0, 0x5)
+	E:/game/src/netserver/log/myLog.go:120 +0x56
+netserver.(*TContext).InitSession(0xc04219e380, 0x2711, 0x0, 0xc042170e00, 0xd)
+	E:/game/src/netserver/context.go:73 +0x10a
+netserver.(*UserConn).doRequest(0xc042038480, 0xc042186080, 0xa, 0x76e500, 0x0, 0x0, 0xc04219e310, 0x0, 0x0)
+	E:/game/src/netserver/user_conn.go:150 +0xc0
+netserver.(*UserConn).HandleRequest(0xc042038480)
+	E:/game/src/netserver/user_conn.go:129 +0x37c
+netserver.(*UserConn).HandleRequest-fm()
+	E:/game/src/netserver/user_conn.go:95 +0x31
+netserver.(*UserConn).goRoutine.func1()
+	E:/game/src/netserver/user_conn.go:243 +0x6e
+created by netserver.(*UserConn).goRoutine
+	E:/game/src/netserver/user_conn.go:245 +0xa7
+[2019-08-16 15:37:20 850665600][FATAL][E:/game/src/netserver/user_conn.go:263] readRequest err:read tcp4 192.168.52.67:9999->192.168.52.67:50889: wsarecv: An existing connection was forcibly closed by the remote host.
+[2019-08-16 15:39:09 3608900][FATAL][E:/game/src/netserver/user_conn.go:239] client 192.168.52.67:50976 err handleRequest  recover runtime error: invalid memory address or nil pointer dereference stack goroutine 120 [running]:
+runtime/debug.Stack(0xc042080930, 0xc04219e100, 0x13)
+	C:/Go/src/runtime/debug/stack.go:24 +0xae
+netserver.(*UserConn).goRoutine.func1.1(0xc042084420, 0x634f82, 0xd)
+	E:/game/src/netserver/user_conn.go:240 +0xdb
+panic(0x5fe100, 0x74b6a0)
+	C:/Go/src/runtime/panic.go:491 +0x291
+netserver/log.(*UserLogger).AddPairInfo(0x0, 0x633513, 0x3, 0xc0421a01a0, 0x5)
+	E:/game/src/netserver/log/myLog.go:121 +0xaf
+netserver.(*TContext).InitSession(0xc0421b6380, 0x2711, 0x0, 0xc04218aa20, 0xd)
+	E:/game/src/netserver/context.go:73 +0x10a
+netserver.(*UserConn).doRequest(0xc042084420, 0xc0421a0080, 0xa, 0x76e500, 0x0, 0x0, 0xc0421b6310, 0x0, 0x0)
+	E:/game/src/netserver/user_conn.go:150 +0xc0
+netserver.(*UserConn).HandleRequest(0xc042084420)
+	E:/game/src/netserver/user_conn.go:129 +0x37c
+netserver.(*UserConn).HandleRequest-fm()
+	E:/game/src/netserver/user_conn.go:95 +0x31
+netserver.(*UserConn).goRoutine.func1()
+	E:/game/src/netserver/user_conn.go:243 +0x6e
+created by netserver.(*UserConn).goRoutine
+	E:/game/src/netserver/user_conn.go:245 +0xa7
+[2019-08-16 15:39:09 11609900][FATAL][E:/game/src/netserver/user_conn.go:263] readRequest err:read tcp4 192.168.52.67:9999->192.168.52.67:50976: wsarecv: An existing connection was forcibly closed by the remote host.
+[2019-08-16 15:40:56 53578700][FATAL][E:/game/src/netserver/user_conn.go:239] client 192.168.52.67:51082 err handleRequest  recover runtime error: invalid memory address or nil pointer dereference stack goroutine 120 [running]:
+runtime/debug.Stack(0xc042080930, 0xc042182b20, 0x13)
+	C:/Go/src/runtime/debug/stack.go:24 +0xae
+netserver.(*UserConn).goRoutine.func1.1(0xc042084420, 0x634f82, 0xd)
+	E:/game/src/netserver/user_conn.go:240 +0xdb
+panic(0x5fe100, 0x74b6a0)
+	C:/Go/src/runtime/panic.go:491 +0x291
+netserver/log.(*UserLogger).AddPairInfo(0x0, 0x633513, 0x3, 0xc04204eca0, 0x5)
+	E:/game/src/netserver/log/myLog.go:121 +0xaf
+netserver.(*TContext).InitSession(0xc0420964d0, 0x2711, 0x0, 0xc042182a20, 0xd)
+	E:/game/src/netserver/context.go:73 +0x10a
+netserver.(*UserConn).doRequest(0xc042084420, 0xc04204eb80, 0xa, 0x76e500, 0x0, 0x0, 0xc042096460, 0x0, 0x0)
+	E:/game/src/netserver/user_conn.go:150 +0xc0
+netserver.(*UserConn).HandleRequest(0xc042084420)
+	E:/game/src/netserver/user_conn.go:129 +0x37c
+netserver.(*UserConn).HandleRequest-fm()
+	E:/game/src/netserver/user_conn.go:95 +0x31
+netserver.(*UserConn).goRoutine.func1()
+	E:/game/src/netserver/user_conn.go:243 +0x6e
+created by netserver.(*UserConn).goRoutine
+	E:/game/src/netserver/user_conn.go:245 +0xa7
+[2019-08-16 15:40:56 120578300][FATAL][E:/game/src/netserver/user_conn.go:263] readRequest err:read tcp4 192.168.52.67:9999->192.168.52.67:51082: wsarecv: An existing connection was forcibly closed by the remote host.
+[2019-08-16 15:42:33 852334900][FATAL][E:/game/src/netserver/user_conn.go:239] client 192.168.52.67:51164 err handleRequest  recover runtime error: invalid memory address or nil pointer dereference stack goroutine 120 [running]:
+runtime/debug.Stack(0xc042080930, 0xc042198100, 0x13)
+	C:/Go/src/runtime/debug/stack.go:24 +0xae
+netserver.(*UserConn).goRoutine.func1.1(0xc042084420, 0x634fe2, 0xd)
+	E:/game/src/netserver/user_conn.go:240 +0xdb
+panic(0x5fe160, 0x74b6a0)
+	C:/Go/src/runtime/panic.go:491 +0x291
+netserver/log.(*UserLogger).AddPairInfo(0x0, 0x633573, 0x3, 0xc04219a1a0, 0x5)
+	E:/game/src/netserver/log/myLog.go:121 +0x117
+netserver.(*TContext).InitSession(0xc0421b0380, 0x2711, 0x0, 0xc042184a20, 0xd)
+	E:/game/src/netserver/context.go:73 +0x10a
+netserver.(*UserConn).doRequest(0xc042084420, 0xc04219a080, 0xa, 0x76e500, 0x0, 0x0, 0xc0421b0310, 0x0, 0x0)
+	E:/game/src/netserver/user_conn.go:150 +0xc0
+netserver.(*UserConn).HandleRequest(0xc042084420)
+	E:/game/src/netserver/user_conn.go:129 +0x37c
+netserver.(*UserConn).HandleRequest-fm()
+	E:/game/src/netserver/user_conn.go:95 +0x31
+netserver.(*UserConn).goRoutine.func1()
+	E:/game/src/netserver/user_conn.go:243 +0x6e
+created by netserver.(*UserConn).goRoutine
+	E:/game/src/netserver/user_conn.go:245 +0xa7
+[2019-08-16 15:42:33 929329900][FATAL][E:/game/src/netserver/user_conn.go:263] readRequest err:read tcp4 192.168.52.67:9999->192.168.52.67:51164: wsarecv: An existing connection was forcibly closed by the remote host.
+[2019-08-16 15:47:29 386977800][FATAL][E:/game/src/netserver/user_conn.go:239] client 192.168.52.67:51353 err handleRequest  recover runtime error: invalid memory address or nil pointer dereference stack goroutine 107 [running]:
+runtime/debug.Stack(0xc04206e930, 0xc0421d20a0, 0x13)
+	C:/Go/src/runtime/debug/stack.go:24 +0xae
+netserver.(*UserConn).goRoutine.func1.1(0xc042038480, 0x635042, 0xd)
+	E:/game/src/netserver/user_conn.go:240 +0xdb
+panic(0x5fe1c0, 0x74b6a0)
+	C:/Go/src/runtime/panic.go:491 +0x291
+netserver/log.(*UserLogger).Put(0x0)
+	E:/game/src/netserver/log/myLog.go:184 +0x29
+netserver.(*TContext).Put(0xc0421b0070)
+	E:/game/src/netserver/context.go:32 +0x8a
+netserver.(*UserConn).doRequest(0xc042038480, 0xc042188080, 0xa, 0x76e500, 0x0, 0x0, 0xc0421b0000, 0x0, 0x0)
+	E:/game/src/netserver/user_conn.go:189 +0x43b
+netserver.(*UserConn).HandleRequest(0xc042038480)
+	E:/game/src/netserver/user_conn.go:119 +0x1a1
+netserver.(*UserConn).HandleRequest-fm()
+	E:/game/src/netserver/user_conn.go:95 +0x31
+netserver.(*UserConn).goRoutine.func1()
+	E:/game/src/netserver/user_conn.go:243 +0x6e
+created by netserver.(*UserConn).goRoutine
+	E:/game/src/netserver/user_conn.go:245 +0xa7
+[2019-08-16 15:51:08 680006800][FATAL][E:/game/src/netserver/user_conn.go:239] client 192.168.52.67:51486 err handleRequest  recover runtime error: invalid memory address or nil pointer dereference stack goroutine 120 [running]:
+runtime/debug.Stack(0xc042080930, 0xc04200e480, 0x13)
+	C:/Go/src/runtime/debug/stack.go:24 +0xae
+netserver.(*UserConn).goRoutine.func1.1(0xc042084420, 0x635042, 0xd)
+	E:/game/src/netserver/user_conn.go:240 +0xdb
+panic(0x5fe1c0, 0x74b6a0)
+	C:/Go/src/runtime/panic.go:491 +0x291
+netserver/log.(*UserLogger).Put(0x0)
+	E:/game/src/netserver/log/myLog.go:184 +0x29
+netserver.(*TContext).Put(0xc0421be070)
+	E:/game/src/netserver/context.go:32 +0x8a
+netserver.(*UserConn).doRequest(0xc042084420, 0xc0421a0080, 0xa, 0x76e500, 0x0, 0x0, 0xc0421be000, 0x0, 0x0)
+	E:/game/src/netserver/user_conn.go:189 +0x43b
+netserver.(*UserConn).HandleRequest(0xc042084420)
+	E:/game/src/netserver/user_conn.go:119 +0x1a1
+netserver.(*UserConn).HandleRequest-fm()
+	E:/game/src/netserver/user_conn.go:95 +0x31
+netserver.(*UserConn).goRoutine.func1()
+	E:/game/src/netserver/user_conn.go:243 +0x6e
+created by netserver.(*UserConn).goRoutine
+	E:/game/src/netserver/user_conn.go:245 +0xa7
+[2019-08-16 15:57:05 662901100][FATAL][E:/game/src/netserver/user_conn.go:262] readRequest err:read tcp4 192.168.52.67:9999->192.168.52.67:51699: wsarecv: An existing connection was forcibly closed by the remote host.
+[2019-08-16 16:11:28 950540100][FATAL][E:/game/src/netserver/user_conn.go:262] readRequest err:read tcp4 192.168.52.67:9999->192.168.52.67:52678: wsarecv: An existing connection was forcibly closed by the remote host.
+[2019-08-16 16:51:43 603913600][FATAL][E:/game/src/netserver/user_conn.go:262] readRequest err:read tcp4 192.168.52.67:9999->192.168.52.67:51704: wsarecv: An existing connection was forcibly closed by the remote host.

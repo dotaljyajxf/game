@@ -1,6 +1,7 @@
 package main
 
 import (
+	"data"
 	"flag"
 	"fmt"
 	_ "module/dummy"
@@ -35,6 +36,7 @@ func parseFlag() {
 	config.LogLevel = *logLv
 	config.WanIp = *wanIp
 	config.WanPort = *wanPort
+	config.DBSource = "game:ljy1314@tcp(106.12.16.96:3306)/game001?charset=utf8"
 
 	config.MaxClientReq = 20
 	config.FrontPingMs = 1000
@@ -76,6 +78,12 @@ func main() {
 
 	serverAddr := fmt.Sprintf("%s:%d", netserver.GlobalConfig.WanIp, netserver.GlobalConfig.WanPort)
 	server := netserver.NewServer(serverAddr)
+
+	err := data.InitDb(netserver.GlobalConfig.DBSource, netserver.GlobalConfig.LogPath)
+	if err != nil {
+		gLog.Fatal("init dbsrc:%s error : %s", netserver.GlobalConfig.DBSource, err)
+		return
+	}
 
 	netserver.InitWorker(100)
 

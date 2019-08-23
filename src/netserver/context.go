@@ -1,6 +1,8 @@
 package netserver
 
 import (
+	"data"
+	"github.com/go-xorm/xorm"
 	"netserver/log"
 	"strconv"
 	"sync"
@@ -39,6 +41,7 @@ type TContext struct {
 	reqEndTime   time.Time
 	session      TSession
 	isSessionChg bool
+	mData        *xorm.Engine
 }
 
 func (this *TContext) SetSession(session TSession) {
@@ -50,6 +53,11 @@ func (this *TContext) StartMethod(method string) {
 	this.reqStartTime = time.Now()
 	this.isSessionChg = false
 	this.logger = log.NewUserLogger()
+	this.mData = data.NewEngine()
+}
+
+func (this *TContext) DB() *xorm.Engine {
+	return this.mData
 }
 
 func (this *TContext) GetLogger() *log.UserLogger {

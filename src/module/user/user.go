@@ -23,12 +23,13 @@ func (this *UserRpc) Login(arg *pb.TEmptyReq) (ret *pb.TUserLoginResponse) {
 	fmt.Println(context)
 	log := context.GetLogger()
 
-	log.Info("Begin Login", context.GetUid())
+	log.Info("Begin Login %s", context.GetUid())
 
-	name := "haha"
-	ret.Name = &name
+	userObj := GetUserObj(10001, context)
+	uname := userObj.GetUname()
+	ret.Name = &uname
 
-	context.SetUid(10001)
-	log.Info("Finish Login", context.GetUid())
+	log.Info("UserInfo  %s ", userObj.GetAllInfo())
+	log.Info("Finish Login %s ", context.GetUid())
 	return ret
 }

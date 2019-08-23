@@ -22,10 +22,11 @@ type Config struct {
 	LogName  string
 	LogLevel int
 
-	LanIp   string
-	LanPort int
-	WanIp   string
-	WanPort int
+	LanIp    string
+	LanPort  int
+	WanIp    string
+	WanPort  int
+	DBSource string
 
 	EtcdEndPoints []string
 }
